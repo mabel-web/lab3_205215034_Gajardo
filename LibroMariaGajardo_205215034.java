@@ -1,29 +1,62 @@
+/**
+ * TDA que representa un libro de la biblioteca
+ */
 public class LibroMariaGajardo205215034 {
-    private int id;
+    private int idLibro;
     private String autor;
     private String titulo;
     private boolean disponibilidad;
-
-    public LibroMariaGajardo205215034(int id, String autor, String titulo, boolean disponibilidad){
-        this.id = id;
+    /**
+     * Es el constructor del libro
+     * @param idLibro identificador del libro
+     * @param autor es el autor del libro
+     * @param titulo es el titulo del libro
+     * @param disponibilidad es el estado de disponibilidad, no prestado (true) y prestado (false)
+     */
+    public LibroMariaGajardo205215034(int idLibro, String autor, String titulo, boolean disponibilidad){
+        this.idLibro = idLibro;
         this.autor = autor;
         this.titulo = titulo;
-        this.disponibilidad = disponibilidad
+        this.disponibilidad = true;
     }
-
+    /**
+     *Devuelve el identificador del libro
+     *
+     * @return idLibro
+     */
     public int getId(){
-        return id;
+        return idLibro;
     }
-
+    /**
+     *Devuelve el autor del libro
+     *
+     * @return autor
+     */
     public String getAutor() {
         return autor;
     }
-
+    /**
+     *Devuelve el titulo del libro
+     *
+     * @return titulo
+     */
     public String getTitulo(){
         return titulo;
     }
-
+    /**
+     *Devuelve el estado de disponibilidad del libro
+     *
+     * @return disponibilidad
+     */
     public boolean getDisponibilidad(){
         return disponibilidad;
     }
+    /**
+     * Modifica el estado de disponibilidad si el prestamo esta activo o no
+     * @param disponibilidad nuevo estado del libro
+     */
+    public void setDisponibilidad(boolean disponibilidad){
+        this.disponibilidad = disponibilidad;
+    }
+
 }

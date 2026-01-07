@@ -1,33 +1,69 @@
-import java.time.format;
+import java.time.LocalDate;
 
+/**
+ * TDA que representa un prestamo de la biblioteca
+ */
 public class PrestamoMariaGajardo_205215034 {
-    private int idPrestramo;
+    private int idPrestamo;
     private int idUsuario;
     private int idLibro;
-    private fecha;
-    private diasSolicitados;
-
-    public PrestamoMariaGajardo_205215034(int idPrestramo, int idUsuario, int idLibro, fecha, diasSolicitados){
-        this.idLibro = idLibro,
-        this.idUsuario = idUsuario,
-        this.idLibro = idLibro,
-        this LocalDate = fecha
-        this diasSolicitados
+    private LocalDate fecha;
+    private int diasSolicitados;
+    /**
+     * Constructor del prestamo
+     * @param idPrestamo identificador del prestamo
+     * @param idLibro identificador del libro
+     * @param idUsuario identificador del usuario que solicita
+     * @param fecha fecha inicial del prestamo
+     * @param diasSolicitados numero de dias del prestamo
+     */
+    public PrestamoMariaGajardo_205215034(int idPrestamo, int idUsuario, int idLibro, LocalDate fecha, int diasSolicitados){
+        this.idPrestamo = idPrestamo;
+        this.idUsuario = idUsuario;
+        this.idLibro = idLibro;
+        this.fecha = LocalDate.now();
+        this.diasSolicitados = diasSolicitados;
     }
-
-    public int getIdPrestramo() {
+    /**
+     *Devuelve el identificador del prestamo
+     *
+     * @return idPrestamo
+     */
+    public int getIdPrestamo() {
         return idPrestamo;
     }
-
+    /**
+     *Devuelve el identificador del usuario
+     *
+     * @return idUsuario
+     */
     public int getIdUsuario(){
         return idUsuario;
     }
-
-    public int getfecha(){
+    /**
+     *Devuelve el identificador del libro
+     *
+     * @return idLibro
+     */
+    public int getIdLibro() {
+        return idLibro;
+    }
+    /**
+     *Devuelve la fecha inicial del prestamo
+     *
+     * @return fecha
+     */
+    public LocalDate getFecha(){
         return fecha;
     }
-
-    set
+    /**
+     *Devuelve los dias totales del prestamo
+     *
+     * @return diasSolicitados
+     */
+    public int getDiasSolicitados(){
+        return diasSolicitados;
+    }
 }
 
 
