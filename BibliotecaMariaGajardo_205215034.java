@@ -5,9 +5,9 @@ import java.time.LocalDate;
  * TDA que representa la biblioteca
  */
 public class BibliotecaMariaGajardo_205215034 {
-    private List<LibroMariaGajardo205215034> libros;
-    private List<UsuarioMariaGajardo205215034> usuarios;
-    private List<PrestamoMariaGajardo_205215034> prestamos;
+   // private List<LibroMariaGajardo205215034> libros;
+   // private List<UsuarioMariaGajardo205215034> usuarios;
+    //private List<PrestamoMariaGajardo_205215034> prestamos;  //creo que las listas van solo en el constructor con el this
     private int maxLibrosUsuario;
     private int diasMaxPrestamo;
     private int tasaMultaDiaria;
@@ -101,7 +101,27 @@ public class BibliotecaMariaGajardo_205215034 {
     public int getDiasRetrasoMax() {
         return diasRetrasoMax;
     }
-
-
+    /**
+     *RF03 TDA Usuario - constructor BORRADOR
+     *
+     * @return nuevoUsuario
+     */
+    public UsuarioMariaGajardo205215034 crearUsuario(){
+        UsuarioMariaGajardo205215034 nuevoUsuario = new UsuarioMariaGajardo205215034();
+        usuarios.add();
+        idUsuarios++;
+        return nuevoUsuario;
+    }
+    /**
+     *RF04 TDA Libro - constructor BORRADOR
+     *
+     * @return nuevoLibro
+     */
+    public LibroMariaGajardo205215034 crearLibro(){
+        LibroMariaGajardo205215034 nuevoLibro = new LibroMariaGajardo205215034();
+        libros.add();
+        idLibros++; //crear la variable para incrementar los ids
+        return nuevoLibro;
+    }
 }
 
