@@ -6,6 +6,7 @@ public class UsuarioMariaGajardo205215034 {
     private String nombre;
     private int deuda;
     private boolean estado;
+    private List<LibroMariaGajardo205215034> librosPrestados;
 
     /**
      * Es el constructor del UsuarioMariaGajardo205215034
@@ -18,7 +19,8 @@ public class UsuarioMariaGajardo205215034 {
         this.id = id;
         this.nombre = nombre;
         this.deuda = 0;
-        this. suspendido = true;
+        this.suspendido = true;
+        this.librosPrestados = newArrayList<>();
     }
     /**
      *Metodos
