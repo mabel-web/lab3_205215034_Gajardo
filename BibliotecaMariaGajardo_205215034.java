@@ -9,7 +9,7 @@ public class BibliotecaMariaGajardo_205215034 {
     private int idIncrLibros;
     private int idIncrUsuarios;
     private int idIncrBibliotecas;
-    private List<LibroMariaGajardo205215034> libros;
+    private List<LibroMariaGajardo_205215034> libros;
     private List<UsuarioMariaGajardo205215034> usuarios;
     private List<PrestamoMariaGajardo_205215034> prestamos;
     private int maxLibrosUsuario;
@@ -50,7 +50,7 @@ public class BibliotecaMariaGajardo_205215034 {
      *
      * @return libros
      */
-    public List<LibroMariaGajardo205215034> getLibros() {
+    public List<LibroMariaGajardo_205215034> getLibros() {
         return libros;
     }
     /**
@@ -128,8 +128,8 @@ public class BibliotecaMariaGajardo_205215034 {
      *
      * @return nuevoLibro
      */
-    public LibroMariaGajardo205215034 crearLibro(String autor, String titulo){
-        LibroMariaGajardo205215034 l = new LibroMariaGajardo205215034(idIncrLibros, autor, titulo, true);
+    public LibroMariaGajardo_205215034 crearLibro(String autor, String titulo){
+        LibroMariaGajardo_205215034 l = new LibroMariaGajardo_205215034(idIncrLibros, autor, titulo, true);
         libros.add(l);
         idIncrLibros++;
         return l;
@@ -166,7 +166,7 @@ public class BibliotecaMariaGajardo_205215034 {
             }
         }
 
-        LibroMariaGajardo205215034 l = new LibroMariaGajardo205215034(IdIncrLibros, titulo, autor);
+        LibroMariaGajardo_205215034 l = new LibroMariaGajardo_205215034(IdIncrLibros, titulo, autor);
         libros.add(l);
         idIncrLibros++;
         return l;
@@ -211,3 +211,36 @@ public class BibliotecaMariaGajardo_205215034 {
      * @param id identificador del usuario
      * @return usuario buscado o null
      */
+    public LibroMariaGajardo_205215034 buscarLibro(BuscarLibro_MariaGajardo_205215034 busqueda, String criterio){
+        return busqueda.buscarL(libros, criterio);
+    }
+
+    /**
+     *RF11 isLibroDisponible
+     *
+     * Verifica si un libro esta disponible (no prestado)
+     *
+     * @param libro libro a verificar
+     * @return boolean si esta disponible true sino false
+     */
+
+    public boolean isLibroDisponible(LibroMariaGajardo_205215034 l){
+        for (LibroMariaGajardo_205215034 l : libros){
+            if (){
+                return false;
+            }
+        }
+        return true;
+    }
+    /**
+     *RF12 isUsuarioSuspendido
+     *
+     * Verifica el estado del usuario
+     *
+     * @param usuario usuariio a verificar
+     * @return boolean si esta activo true sino false
+     */
+
+    public boolean isUsuarioSuspendido(UsuarioMariaGajardo205215034 u){
+
+    }

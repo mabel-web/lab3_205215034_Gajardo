@@ -1,7 +1,7 @@
 /**
  * TDA que representa un libro de la biblioteca
  */
-public class LibroMariaGajardo205215034 {
+public class LibroMariaGajardo_205215034 {
     private int idLibro;
     private String autor;
     private String titulo;
@@ -13,7 +13,7 @@ public class LibroMariaGajardo205215034 {
      * @param titulo es el titulo del libro
      * @param disponibilidad es el estado de disponibilidad, no prestado (true) y prestado (false)
      */
-    public LibroMariaGajardo205215034(int idLibro, String autor, String titulo, boolean disponibilidad){
+    public LibroMariaGajardo_205215034(int idLibro, String autor, String titulo, boolean disponibilidad){
         this.idLibro = idLibro;
         this.autor = autor;
         this.titulo = titulo;
@@ -24,7 +24,7 @@ public class LibroMariaGajardo205215034 {
      *
      * @return idLibro
      */
-    public int getId(){
+    public int getIdLibro(){
         return idLibro;
     }
     /**

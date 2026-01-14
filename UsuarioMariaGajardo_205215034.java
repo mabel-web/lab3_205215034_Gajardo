@@ -6,7 +6,7 @@ public class UsuarioMariaGajardo205215034 {
     private String nombre;
     private int deuda;
     private boolean estado;
-    private List<LibroMariaGajardo205215034> librosPrestados;
+    private List<LibroMariaGajardo_205215034> librosPrestados;
 
     /**
      * Es el constructor del UsuarioMariaGajardo205215034
@@ -28,7 +28,7 @@ public class UsuarioMariaGajardo205215034 {
      *
      * @return id
      */
-    public int getId(){
+    public int getIdUsuario(){
         return id;
     }
     /**
