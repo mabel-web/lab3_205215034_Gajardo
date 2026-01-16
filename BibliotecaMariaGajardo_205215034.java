@@ -10,7 +10,7 @@ public class BibliotecaMariaGajardo_205215034 {
     private int idIncrUsuarios;
     private int idIncrBibliotecas;
     private List<LibroMariaGajardo_205215034> libros;
-    private List<UsuarioMariaGajardo205215034> usuarios;
+    private List<UsuarioMariaGajardo_205215034> usuarios;
     private List<PrestamoMariaGajardo_205215034> prestamos;
     private int maxLibrosUsuario;
     private int diasMaxPrestamo;
@@ -37,7 +37,7 @@ public class BibliotecaMariaGajardo_205215034 {
         this.tasaMultaDiaria = tasaMultaDiaria;
         this.limiteDeudaMax = limiteDeudaMax;
         this.diasRetrasoMax = diasRetrasoMax;
-        this.fechaInicial = LocalDate.now();
+        this.fechaInicial = LocalDate.now(); ////////no entiendooo si es fecha real o falsa del sistema
 
         this.idIncrUsuarios = 0;
         this.idIncrLibros = 0;
@@ -58,7 +58,7 @@ public class BibliotecaMariaGajardo_205215034 {
      *
      * @return usuarios
      */
-    public List<UsuarioMariaGajardo205215034> getUsuarios() {
+    public List<UsuarioMariaGajardo_205215034> getUsuarios() {
         return usuarios;
     }
     /**
@@ -111,14 +111,22 @@ public class BibliotecaMariaGajardo_205215034 {
         return diasRetrasoMax;
     }
 
+    /**
+     *Devuelve la fecha inicial del sistema    /FECHA INICIAL
+     *
+     * @return diasRetrasoMax
+     */
+    public LocalDate getFechaInicial() {
+        return fechaInicial;
+    }
 
     /**
      *RF03 TDA Usuario - constructor BORRADOR
      *
      * @return nuevoUsuario
      */
-    public UsuarioMariaGajardo205215034 crearUsuario(String nombre){
-        UsuarioMariaGajardo205215034 u = new UsuarioMariaGajardo205215034(idIncrUsuarios, nombre);
+    public UsuarioMariaGajardo_205215034 crearUsuario(String nombre){
+        UsuarioMariaGajardo_205215034 u = new UsuarioMariaGajardo_205215034(idIncrUsuarios, nombre);
         usuarios.add(u);
         idIncrUsuarios++;
         return u;
@@ -126,15 +134,17 @@ public class BibliotecaMariaGajardo_205215034 {
     /**
      *RF04 TDA Libro - constructor
      *
-     * @return nuevoLibro
+     * @param autor
+     * @param titulo
+     * @return l
      */
     public LibroMariaGajardo_205215034 crearLibro(String autor, String titulo){
-        LibroMariaGajardo_205215034 l = new LibroMariaGajardo_205215034(idIncrLibros, autor, titulo, true);
+        LibroMariaGajardo_205215034 l = new LibroMariaGajardo_205215034(idIncrLibros, autor, titulo);
         libros.add(l);
         idIncrLibros++;
         return l;
     }
-}
+
 
     /**
     *RF05 TDA Prestamo - constructor
@@ -143,7 +153,7 @@ public class BibliotecaMariaGajardo_205215034 {
      * @param libro
     * @return nuevoPrestamo
     */
-    public PrestamoMariaGajardo_205215034 crearPrestamo(UsuarioMariaGajardo205215034 usuario, LibroMariaGajardo205215034 libro){
+    public PrestamoMariaGajardo_205215034 crearPrestamo(UsuarioMariaGajardo_205215034 usuario, LibroMariaGajardo_205215034 libro){
         PrestamoMariaGajardo_205215034 p = new PrestamoMariaGajardo_205215034(usuario, libro, fechaInicial, fechaInicial.plusDays(diasMaxPrestamo));
         prestamos.add(p);
         idIncrPrestamos++;
@@ -159,14 +169,14 @@ public class BibliotecaMariaGajardo_205215034 {
      * @return libro nuevo
      */
 
-    public LibroMariaGajardo205215034 agregarLibro(String titulo, String autor){
-        for (LibroMariaGajardo205215034 libro : libros){ //no se si necesario xq al agregar uno deberia aumentar siosi el id
+    public LibroMariaGajardo_205215034 agregarLibro(String titulo, String autor){
+        for (LibroMariaGajardo_205215034 libro : libros){ //no se si necesario xq al agregar uno deberia aumentar siosi el id
             if (libro.getIdLibro() == idIncrLibros){
                 return null;
             }
         }
 
-        LibroMariaGajardo_205215034 l = new LibroMariaGajardo_205215034(IdIncrLibros, titulo, autor);
+        LibroMariaGajardo_205215034 l = new LibroMariaGajardo_205215034(idIncrLibros, titulo, autor);
         libros.add(l);
         idIncrLibros++;
         return l;
@@ -182,7 +192,7 @@ public class BibliotecaMariaGajardo_205215034 {
      */
 
     public BibliotecaMariaGajardo_205215034 registrarUsuario(String nombre){
-        UsuarioMariaGajardo205215034 u = new UsuarioMariaGajardo205215034(idIncrUsuarios, nombre);
+        UsuarioMariaGajardo_205215034 u = new UsuarioMariaGajardo_205215034(idIncrUsuarios, nombre);
         usuarios.add(u);
         idIncrUsuarios++;
         return u;
@@ -195,8 +205,8 @@ public class BibliotecaMariaGajardo_205215034 {
      * @param id identificador del usuario
      * @return usuario buscado o null
      */
-    public UsuarioMariaGajardo205215034 obtenerUsuario(int id){
-        for(UsuarioMariaGajardo205215034 usuario : usuarios){
+    public UsuarioMariaGajardo_205215034 obtenerUsuario(int id){
+        for(UsuarioMariaGajardo_205215034 usuario : usuarios){
             if(usuario.getIdUsuario() == id){
                 return usuario;
             }
@@ -208,8 +218,6 @@ public class BibliotecaMariaGajardo_205215034 {
      *RF10 buscarLibro
      * Busca libro por "id", "titulo" o "autor"
      *
-     * @param id identificador del usuario
-     * @return usuario buscado o null
      */
     public LibroMariaGajardo_205215034 buscarLibro(BuscarLibro_MariaGajardo_205215034 busqueda, String criterio){
         return busqueda.buscarL(libros, criterio);
@@ -217,30 +225,43 @@ public class BibliotecaMariaGajardo_205215034 {
 
     /**
      *RF11 isLibroDisponible
-     *
      * Verifica si un libro esta disponible (no prestado)
      *
-     * @param libro libro a verificar
+     * @param l libro a verificar
      * @return boolean si esta disponible true sino false
      */
 
     public boolean isLibroDisponible(LibroMariaGajardo_205215034 l){
-        for (LibroMariaGajardo_205215034 l : libros){
-            if (){
-                return false;
-            }
-        }
-        return true;
+        return l.isDisponible();
     }
     /**
      *RF12 isUsuarioSuspendido
-     *
      * Verifica el estado del usuario
      *
-     * @param usuario usuariio a verificar
-     * @return boolean si esta activo true sino false
+     * @param u usuario a verificar
+     * @return boolean si está activo true sino false
      */
 
-    public boolean isUsuarioSuspendido(UsuarioMariaGajardo205215034 u){
-
+    public boolean isUsuarioSuspendido(UsuarioMariaGajardo_205215034 u){
+        if (!u.isActivo()){
+            return true;
+        }
+        return false;
     }
+
+    /**
+     * RF13 getFecha
+     *
+     *Obtiene fecha actual del sistema desde la biblioteca FECHA ACTUAL
+     * @return fecha actual
+     */
+    public LocalDate getFecha(){
+        return LocalDate.now();
+    }
+
+
+
+
+
+
+}

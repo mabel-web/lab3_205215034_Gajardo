@@ -5,19 +5,18 @@ public class LibroMariaGajardo_205215034 {
     private int idLibro;
     private String autor;
     private String titulo;
-    private boolean disponibilidad;
+    private boolean disponible;
     /**
      * Es el constructor del libro
      * @param idLibro identificador del libro
      * @param autor es el autor del libro
      * @param titulo es el titulo del libro
-     * @param disponibilidad es el estado de disponibilidad, no prestado (true) y prestado (false)
      */
-    public LibroMariaGajardo_205215034(int idLibro, String autor, String titulo, boolean disponibilidad){
+    public LibroMariaGajardo_205215034(int idLibro, String autor, String titulo){
         this.idLibro = idLibro;
         this.autor = autor;
         this.titulo = titulo;
-        this.disponibilidad = true;
+        this.disponible = true;
     }
     /**
      *Devuelve el identificador del libro
@@ -48,15 +47,15 @@ public class LibroMariaGajardo_205215034 {
      *
      * @return disponibilidad
      */
-    public boolean getDisponibilidad(){
-        return disponibilidad;
+    public boolean isDisponible(){
+        return disponible;
     }
     /**
-     * Modifica el estado de disponibilidad si el prestamo esta activo o no
-     * @param disponibilidad nuevo estado del libro
+     * Modifica el estado de disponibilidad
+     * @param disponible nuevo estado del libro
      */
-    public void setDisponibilidad(boolean disponibilidad){
-        this.disponibilidad = disponibilidad;
+    public void setDisponible(boolean disponible){
+        this.disponible = disponible;
     }
 
 }

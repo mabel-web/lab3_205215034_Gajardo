@@ -1,26 +1,26 @@
+import java.util.List;
+import java.util.ArrayList;
 /**
  * TDA que representa el usuario de la biblioteca
  */
-public class UsuarioMariaGajardo205215034 {
+public class UsuarioMariaGajardo_205215034 {
     private int id;
     private String nombre;
     private int deuda;
-    private boolean estado;
+    private boolean activo;
     private List<LibroMariaGajardo_205215034> librosPrestados;
 
     /**
      * Es el constructor del UsuarioMariaGajardo205215034
      * @param id identificador del usuario
      * @param nombre es el nombre del usuario
-     * @param deuda es el lo que debe el usuario po retrasos
-     * @param estado es activado/suspendido del usuario
      */
-    public UsuarioMariaGajardo205215034(int id, String nombre){
+    public UsuarioMariaGajardo_205215034(int id, String nombre){
         this.id = id;
         this.nombre = nombre;
         this.deuda = 0;
-        this.suspendido = true;
-        this.librosPrestados = newArrayList<>();
+        this.activo = true;
+        this.librosPrestados = new ArrayList<>();
     }
     /**
      *Metodos
@@ -49,9 +49,14 @@ public class UsuarioMariaGajardo205215034 {
 
     }
 
-    public boolean getEstado(){
-        return estado;
+    public boolean isActivo(){
+        return activo;
     }
-
-
+    /**
+     *Modifica el estado del usuario
+     *
+     */
+    public void setActivo(boolean activo){
+        this.activo = activo;
+    }
 }
