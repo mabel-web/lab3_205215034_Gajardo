@@ -1,6 +1,9 @@
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
+import static java.util.concurrent.TimeUnit.DAYS;
+
 /**
  * TDA que representa la biblioteca
  */
@@ -147,7 +150,7 @@ public class BibliotecaMariaGajardo_205215034 {
 
 
     /**
-    *RF05 TDA Prestamo - constructor
+    *RF05 TDA Prestamo - constructor /////////7
     *
      * @param usuario
      * @param libro
@@ -202,12 +205,12 @@ public class BibliotecaMariaGajardo_205215034 {
      *RF09 obtenerUsuario
      * Busca usuario por id
      *
-     * @param id identificador del usuario
-     * @return usuario buscado o null
+     * @param idUsuario identificador del usuario
+     * @return u  buscado o null
      */
-    public UsuarioMariaGajardo_205215034 obtenerUsuario(int id){
+    public UsuarioMariaGajardo_205215034 obtenerUsuario(int idUsuario){
         for(UsuarioMariaGajardo_205215034 usuario : usuarios){
-            if(usuario.getIdUsuario() == id){
+            if(usuario.getIdUsuario() == idUsuario){
                 return usuario;
             }
         }
@@ -258,10 +261,36 @@ public class BibliotecaMariaGajardo_205215034 {
     public LocalDate getFecha(){
         return LocalDate.now();
     }
+    /**
+     *RF14 obtenerDeuda
+     *
+     * Retorna la deuda acumulada por el usuario
+     *
+     * @return deuda
+     */
+    public int obtenerDeuda(UsuarioMariaGajardo_205215034 u){
+        return u.getDeuda();
+    }
 
+    /**
+     * RF15 obtenerFechaVencimiento
+     *
+     * Calcula fecha de vencimiento sumando dias solicitados a fecha de prestamo
+     */
+    public LocalDate obtenerFechaVencimiento(LocalDate fechaInicial, int diasSolicitados){
+        return fechaInicial.plusDays(diasSolicitados);
+    }
 
-
-
-
+    /**
+     * RF16 calcularDiasRetraso
+     *
+     * Calcula dias de retraso entre fecha de vencimiento y fecha actual
+     * Retorna 0 si no hay retraso
+     */
+    public int calcularDiasRetraso(int diasSolicitados, LocalDate fecha){
+        LocalDate fechaVencimiento = obtenerFechaVencimiento(fechaInicial, diasSolicitados);
+        long diasRetraso = ChronoUnit.DAYS.between(fechaVencimiento, fecha);
+        return (diasRetraso > 0) ? (int) diasRetraso : 0;
+    }
 
 }

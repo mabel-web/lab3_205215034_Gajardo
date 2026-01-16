@@ -13,7 +13,7 @@ public class LibroMariaGajardo_205215034 {
      * @param titulo es el titulo del libro
      */
     public LibroMariaGajardo_205215034(int idLibro, String autor, String titulo){
-        this.idLibro = idLibro;
+        this.idLibro = idLibro;//DEBERIA SACARLO CREO
         this.autor = autor;
         this.titulo = titulo;
         this.disponible = true;

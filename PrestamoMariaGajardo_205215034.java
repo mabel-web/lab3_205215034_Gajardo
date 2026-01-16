@@ -11,14 +11,12 @@ public class PrestamoMariaGajardo_205215034 {
     private int diasSolicitados;
     /**
      * Constructor del prestamo
-     * @param idPrestamo identificador del prestamo
      * @param idLibro identificador del libro
      * @param idUsuario identificador del usuario que solicita
      * @param fecha fecha inicial del prestamo
      * @param diasSolicitados numero de dias del prestamo
      */
-    public PrestamoMariaGajardo_205215034(int idPrestamo, int idUsuario, int idLibro, LocalDate fecha, int diasSolicitados){
-        this.idPrestamo = idPrestamo;
+    public PrestamoMariaGajardo_205215034(int idUsuario, int idLibro, LocalDate fecha, int diasSolicitados){
         this.idUsuario = idUsuario;
         this.idLibro = idLibro;
         this.fecha = LocalDate.now();

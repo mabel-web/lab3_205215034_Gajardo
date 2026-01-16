@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * TDA que representa el usuario de la biblioteca
  */
 public class UsuarioMariaGajardo_205215034 {
-    private int id;
+    private int idUsuario;
     private String nombre;
     private int deuda;
     private boolean activo;
@@ -12,11 +12,9 @@ public class UsuarioMariaGajardo_205215034 {
 
     /**
      * Es el constructor del UsuarioMariaGajardo205215034
-     * @param id identificador del usuario
      * @param nombre es el nombre del usuario
      */
-    public UsuarioMariaGajardo_205215034(int id, String nombre){
-        this.id = id;
+    public UsuarioMariaGajardo_205215034(String nombre){
         this.nombre = nombre;
         this.deuda = 0;
         this.activo = true;
@@ -24,12 +22,12 @@ public class UsuarioMariaGajardo_205215034 {
     }
     /**
      *Metodos
-     *devuelve el id del usuario
+     *devuelve el idUsuario del usuario
      *
-     * @return id
+     * @return idUsuario
      */
     public int getIdUsuario(){
-        return id;
+        return idUsuario;
     }
     /**
      *devuelve el nombre del usuario
