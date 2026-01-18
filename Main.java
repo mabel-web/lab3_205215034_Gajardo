@@ -1,18 +1,15 @@
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-
         /**
          *RF06 TDA Biblioteca - constructor
          *
          * @return
          */
-        BibliotecaMariaGajardo_205215034 b = new BibliotecaMariaGajardo_205215034(2, 14, 100, 1000, 1, LocalDate.now()); //valores de ejemplo debo revisarlos
-
+        BibliotecaMariaGajardo_205215034 b = new BibliotecaMariaGajardo_205215034(2, 14, 100, 1000, 1, LocalDate.now());
 
         System.out.println("Bienvenida/o a la biblioteca virtual");
         int opcion;
@@ -55,12 +52,27 @@ public class Main {
                     buscarLibro(b);
                     break;
 
+                case 9:
+                    isLibroDisponible(b);
                     break;
+
+                case 10:
+                    isUsuarioSuspendido(b);
+                    break;
+
+                case 11:
+                    getFecha(b);
+                    break;
+
+                case 12:
+                    obtenerDeuda(b);
+                    break;
+
                 default:
                     System.out.println("Opción invalida.");
             }
     } while (opcion != 0);
-
+    }
     private static void menu(){
         System.out.println("Seleccionar una operación:");
         System.out.println("1. Crear usuario.");
@@ -71,8 +83,13 @@ public class Main {
         System.out.println("6. Registrar usuario.");
         System.out.println("7. Obtener usuario.");
         System.out.println("8. Buscar libro.");
+        System.out.println("9. Verificar disponibilidad de un libro.");
+        System.out.println("10. Verificar si un usuario esta suspendido.");
+        System.out.println("11. Obtener fecha actual del sistema.");
+        System.out.println("12. Obtener deuda de un usuario.");
         System.out.println("N. Salir");
 }
+
 
     private static void agregarLibro(BibliotecaMariaGajardo_205215034 b){
         System.out.print("Ingresar el nombre del libro: ");
@@ -97,6 +114,7 @@ public class Main {
         } else {
             System.out.println("Error, no se puede registrar el usuario.");
         }
+        }
 
     private static void obtenerUsuario(BibliotecaMariaGajardo_205215034 b){
         System.out.println("Ingresar el id del usuario:");
@@ -109,11 +127,11 @@ public class Main {
              System.out.println("El usuario no existe.");
                 }
             }
-    }
+
 
     private static void crearUsuario(BibliotecaMariaGajardo_205215034 b){
         System.out.println("Ingresar el nombre de usuario:");
-        String nombre = scanner.nextLine();
+        String nombre = Main.scanner.nextLine();
         UsuarioMariaGajardo_205215034 u = b.crearUsuario(nombre);
         if(u != null){
             System.out.println("Usuario creado.");
@@ -124,9 +142,9 @@ public class Main {
 
     private static void crearLibro(BibliotecaMariaGajardo_205215034 b){
         System.out.println("Ingresar el titulo del libro:");
-        String titulo = scanner.nextLine();
+        String titulo = Main.scanner.nextLine();
         System.out.println("Ingresar el autor del libro:");
-        String autor = scanner.nextLine();
+        String autor = Main.scanner.nextLine();
         LibroMariaGajardo_205215034 l = b.crearLibro(titulo, autor);
         if(l != null){
             System.out.println("Usuario creado.");
@@ -137,9 +155,9 @@ public class Main {
 
     private static void crearPrestamo(BibliotecaMariaGajardo_205215034 b){
         System.out.println("Ingresar el usuario");
-        String usuario = scanner.nextLine();
+        String usuario = Main.scanner.nextLine();
         System.out.println("Ingresar el libro:");
-        String libro = scanner.nextLine();
+        String libro = Main.scanner.nextLine();
         PrestamoMariaGajardo_205215034 p = b.crearPrestamo(usuario, libro);
         if(p != null){
             System.out.println("Usuario creado.");
@@ -148,7 +166,6 @@ public class Main {
         }
         }
 
-    }
 
     private static void buscarLibro(BibliotecaMariaGajardo_205215034 b){
         System.out.println("Buscar libro por su:");
@@ -156,27 +173,28 @@ public class Main {
         System.out.println("2. Titulo.");
         System.out.println("3. Autor.");
         System.out.print("Seleccione un criterio:");
-        int opcion = scanner.nextLine();
+        int opcion = Main.scanner.nextInt();
+        Main.scanner.nextLine();
         BuscarLibro_MariaGajardo_205215034 busqueda = null;
         String criterio;
         switch (opcion){
             case 1:
                 busqueda = new BuscarLibroId_MariaGajardo_205215034();
                 System.out.print("Ingrese id del libro:");
-                criterio = scanner.nextLine();
+                criterio = Main.scanner.nextLine();
                 break;
 
             case 2:
-                busqueda = BuscarLibroTitulo_MariaGajardo_205215034();
+                busqueda = new BuscarLibroTitulo_MariaGajardo_205215034();
                 System.out.print("Ingresa el titulo del libro:");
-                criterio = scanner.nextLine();
+                criterio = Main.scanner.nextLine();
                 break;
 
 
             case 3:
-                busqueda = BuscarLibroAutor_MariaGajardo_205215034();
+                busqueda = new BuscarLibroAutor_MariaGajardo_205215034();
                 System.out.print("Ingresa el autor del libro:");
-                criterio = scanner.nextLine();
+                criterio = Main.scanner.nextLine();
                 break;
 
             default:
@@ -185,21 +203,57 @@ public class Main {
         }
         LibroMariaGajardo_205215034 libro = b.buscarLibro(busqueda, criterio);
         if(libro != null){
-            System.out.println("");
-
-
-
-
-
+            System.out.println("El libro que buscabas es:");
+        } else {
+            System.out.println("El libro no existe en la biblioteca.");
+        }
         }
 
+        public static void isLibroDisponible(BibliotecaMariaGajardo_205215034 b){
+        System.out.println("Ingresa el id del libro para verificar su disponibilidad:");
+        int id = Main.scanner.nextInt();
+        Main.scanner.nextLine();
+        boolean disponible  = b.isLibroDisponible(id);
+        if(disponible){
+            System.out.println("El libro está disponible.");
+            } else {
+            System.out.println("El libro no está disponible.");
+            }
+        }
+
+
+    public static void isUsuarioSuspendido(BibliotecaMariaGajardo_205215034 b){
+        System.out.print("Ingresa el id del usuario:");
+        int id = Main.scanner.nextInt();
+        Main.scanner.nextLine();
+        UsuarioMariaGajardo_205215034 u = b.obtenerUsuario(id);
+        if(u == null){
+            System.out.println("El usuario no existe.");
+            return;
+        }
+        boolean suspendido =  b.isUsuarioSuspendido(u);
+        if(suspendido){
+            System.out.println("El usuario está suspendido.");
+        } else {
+            System.out.println("El usuario esta activo");
+        }
     }
 
+    public static void getFecha(BibliotecaMariaGajardo_205215034 b){
+        System.out.println("La fecha de hoy es:  " + b.getFecha());
+    }
 
-
-
-
-
-
+    public static void obtenerDeuda(BibliotecaMariaGajardo_205215034 b){
+        System.out.print("Ingresa el id del usuario:");
+        int id = Main.scanner.nextInt();
+        Main.scanner.nextLine();
+        UsuarioMariaGajardo_205215034 u = b.obtenerUsuario(id);
+        if(u == null){
+            System.out.println("El usuario no existe.");
+            return;
+        }
+        int deuda = b.obtenerDeuda(u);
+        System.out.println("La deuda del usuario es: $" + deuda);
+    }
 
     }

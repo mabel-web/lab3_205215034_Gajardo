@@ -246,10 +246,7 @@ public class BibliotecaMariaGajardo_205215034 {
      */
 
     public boolean isUsuarioSuspendido(UsuarioMariaGajardo_205215034 u){
-        if (!u.isActivo()){
-            return true;
-        }
-        return false;
+        return !u.isActivo();
     }
 
     /**
