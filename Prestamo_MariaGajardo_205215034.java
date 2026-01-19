@@ -2,8 +2,10 @@ import java.time.LocalDate;
 
 /**
  * TDA que representa un prestamo de la biblioteca
+ * @author Maria Belen Gajardo
+ * version 1.0.0
  */
-public class PrestamoMariaGajardo_205215034 {
+public class Prestamo_MariaGajardo_205215034 {
     private int idPrestamo;
     private int idUsuario;
     private int idLibro;
@@ -16,10 +18,11 @@ public class PrestamoMariaGajardo_205215034 {
      * @param fecha fecha inicial del prestamo
      * @param diasSolicitados numero de dias del prestamo
      */
-    public PrestamoMariaGajardo_205215034(int idUsuario, int idLibro, LocalDate fecha, int diasSolicitados){
+    public Prestamo_MariaGajardo_205215034(int idPrestamo, int idUsuario, int idLibro, LocalDate fecha, int diasSolicitados){
+        this.idPrestamo = idPrestamo;
         this.idUsuario = idUsuario;
         this.idLibro = idLibro;
-        this.fecha = LocalDate.now();
+        this.fecha = fecha;
         this.diasSolicitados = diasSolicitados;
     }
     /**

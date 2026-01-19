@@ -1,19 +1,23 @@
 /**
  * TDA que representa un libro de la biblioteca
+ * @author Maria Belen Gajardo
+ * version 1.0.0
  */
-public class LibroMariaGajardo_205215034 {
+public class Libro_MariaGajardo_205215034 {
     private int idLibro;
     private String autor;
     private String titulo;
     private boolean disponible;
     /**
      * Es el constructor del libro
+     * @param idLibro identificador del libro
      * @param autor es el autor del libro
      * @param titulo es el titulo del libro
      */
-    public LibroMariaGajardo_205215034(String autor, String titulo){
-        this.autor = autor;
+    public Libro_MariaGajardo_205215034(int idLibro, String titulo, String autor){
+        this.idLibro = idLibro;
         this.titulo = titulo;
+        this.autor = autor;
         this.disponible = true;
     }
     /**

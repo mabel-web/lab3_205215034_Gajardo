@@ -1,24 +1,24 @@
-import java.util.List;
-import java.util.ArrayList;
 /**
  * TDA que representa el usuario de la biblioteca
+ * @author Maria Belen Gajardo
+ * version 1.0.0
  */
-public class UsuarioMariaGajardo_205215034 {
+public class Usuario_MariaGajardo_205215034 {
     private int idUsuario;
     private String nombre;
     private int deuda;
     private boolean activo;
-    private List<LibroMariaGajardo_205215034> librosPrestados;
 
     /**
      * Es el constructor del UsuarioMariaGajardo205215034
+     * @param idUsuario identificador del usuario
      * @param nombre es el nombre del usuario
      */
-    public UsuarioMariaGajardo_205215034(String nombre){
+    public Usuario_MariaGajardo_205215034(int idUsuario, String nombre){
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.deuda = 0;
         this.activo = true;
-        this.librosPrestados = new ArrayList<>();
     }
     /**
      *Metodos

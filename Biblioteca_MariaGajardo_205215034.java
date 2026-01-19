@@ -2,21 +2,21 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
-import static java.util.concurrent.TimeUnit.DAYS;
 
 /**
  * TDA que representa la biblioteca
  * Clase Biblioteca
  * @author Maria Belen Gajardo
+ * version 1.0.0
  */
-public class BibliotecaMariaGajardo_205215034 {
+public class Biblioteca_MariaGajardo_205215034 {
     private int idIncrPrestamos;
     private int idIncrLibros;
     private int idIncrUsuarios;
     private int idIncrBibliotecas;
-    private List<LibroMariaGajardo_205215034> libros;
-    private List<UsuarioMariaGajardo_205215034> usuarios;
-    private List<PrestamoMariaGajardo_205215034> prestamos;
+    private List<Libro_MariaGajardo_205215034> libros;
+    private List<Usuario_MariaGajardo_205215034> usuarios;
+    private List<Prestamo_MariaGajardo_205215034> prestamos;
     private int maxLibrosUsuario;
     private int diasMaxPrestamo;
     private int tasaMultaDiaria;
@@ -33,7 +33,7 @@ public class BibliotecaMariaGajardo_205215034 {
      * @param diasRetrasoMax dias de retraso antes de la suspension
      * @param fechaInicial fecha inicial del sistema
      */
-    public BibliotecaMariaGajardo_205215034(int maxLibrosUsuario, int diasMaxPrestamo, int tasaMultaDiaria, int limiteDeudaMax, int diasRetrasoMax, LocalDate fechaInicial){
+    public Biblioteca_MariaGajardo_205215034(int maxLibrosUsuario, int diasMaxPrestamo, int tasaMultaDiaria, int limiteDeudaMax, int diasRetrasoMax, LocalDate fechaInicial){
         this.libros = new ArrayList<>();
         this.usuarios = new ArrayList<>();
         this.prestamos = new ArrayList<>();
@@ -42,11 +42,11 @@ public class BibliotecaMariaGajardo_205215034 {
         this.tasaMultaDiaria = tasaMultaDiaria;
         this.limiteDeudaMax = limiteDeudaMax;
         this.diasRetrasoMax = diasRetrasoMax;
-        this.fechaInicial = LocalDate.now();
-        this.idIncrUsuarios = 0;
-        this.idIncrLibros = 0;
-        this.idIncrPrestamos = 0;
-        this.idIncrBibliotecas = 0;
+        this.fechaInicial = fechaInicial;
+        this.idIncrUsuarios = 1;
+        this.idIncrLibros = 1;
+        this.idIncrPrestamos = 1;
+        this.idIncrBibliotecas = 1;
 
     }
     /**
@@ -54,7 +54,7 @@ public class BibliotecaMariaGajardo_205215034 {
      *
      * @return libros
      */
-    public List<LibroMariaGajardo_205215034> getLibros() {
+    public List<Libro_MariaGajardo_205215034> getLibros() {
         return libros;
     }
     /**
@@ -62,7 +62,7 @@ public class BibliotecaMariaGajardo_205215034 {
      *
      * @return usuarios
      */
-    public List<UsuarioMariaGajardo_205215034> getUsuarios() {
+    public List<Usuario_MariaGajardo_205215034> getUsuarios() {
         return usuarios;
     }
     /**
@@ -70,7 +70,7 @@ public class BibliotecaMariaGajardo_205215034 {
      *
      * @return prestamos
      */
-    public List<PrestamoMariaGajardo_205215034> getPrestamos() {
+    public List<Prestamo_MariaGajardo_205215034> getPrestamos() {
         return prestamos;
     }
 
@@ -129,8 +129,8 @@ public class BibliotecaMariaGajardo_205215034 {
      * @param nombre nombre del usuario/a
      * @return u usuario creado
      */
-    public UsuarioMariaGajardo_205215034 crearUsuario(String nombre){
-        UsuarioMariaGajardo_205215034 u = new UsuarioMariaGajardo_205215034(nombre);
+    public Usuario_MariaGajardo_205215034 crearUsuario(String nombre){
+        Usuario_MariaGajardo_205215034 u = new Usuario_MariaGajardo_205215034(idIncrUsuarios, nombre);
         usuarios.add(u);
         idIncrUsuarios++;
         return u;
@@ -141,8 +141,8 @@ public class BibliotecaMariaGajardo_205215034 {
      * @param titulo titulo del libro
      * @return l libro creado
      */
-    public LibroMariaGajardo_205215034 crearLibro(String autor, String titulo){
-        LibroMariaGajardo_205215034 l = new LibroMariaGajardo_205215034(autor, titulo);
+    public Libro_MariaGajardo_205215034 crearLibro(String autor, String titulo){
+        Libro_MariaGajardo_205215034 l = new Libro_MariaGajardo_205215034(idIncrLibros, autor, titulo);
         libros.add(l);
         idIncrLibros++;
         return l;
@@ -155,27 +155,27 @@ public class BibliotecaMariaGajardo_205215034 {
      * @param libro libro a pedir
     * @return p prestamo nuevo
     */
-    public PrestamoMariaGajardo_205215034 crearPrestamo(UsuarioMariaGajardo_205215034 usuario, LibroMariaGajardo_205215034 libro){
-        PrestamoMariaGajardo_205215034 p = new PrestamoMariaGajardo_205215034(usuario, libro, fechaInicial, fechaInicial.plusDays(diasMaxPrestamo));
+    public Prestamo_MariaGajardo_205215034 crearPrestamo(Usuario_MariaGajardo_205215034 usuario, Libro_MariaGajardo_205215034 libro){
+        Prestamo_MariaGajardo_205215034 p = new Prestamo_MariaGajardo_205215034(idIncrPrestamos, usuario.getIdUsuario(), libro.getIdLibro(), fechaInicial, diasMaxPrestamo);
         prestamos.add(p);
+        libro.setDisponible(false);
         idIncrPrestamos++;
         return p;
 }
     /**
-     *RF07 agregarLibro: Agrega un libro a la biblioteca, si el id ya existe no se agrega y entrega null, sino
-     * se agrega y retorna el libro
+     *RF07 agregarLibro: Agrega un libro a la biblioteca, si el id ya existe no se agrega y entrega null, sino se agrega y retorna el libro
      * @param titulo titulo del libro
      * @param autor autor del libro
      * @return libro libro agregado
      */
 
-    public LibroMariaGajardo_205215034 agregarLibro(String titulo, String autor){
-        for (LibroMariaGajardo_205215034 libro : libros){ //no se si necesario xq al agregar uno deberia aumentar siosi el id
+    public Libro_MariaGajardo_205215034 agregarLibro(String titulo, String autor){
+        for (Libro_MariaGajardo_205215034 libro : libros){
             if (libro.getIdLibro() == idIncrLibros){
                 return null;
             }
         }
-        LibroMariaGajardo_205215034 l = new LibroMariaGajardo_205215034(titulo, autor);
+        Libro_MariaGajardo_205215034 l = new Libro_MariaGajardo_205215034(idIncrLibros, titulo, autor);
         libros.add(l);
         idIncrLibros++;
         return l;
@@ -187,8 +187,8 @@ public class BibliotecaMariaGajardo_205215034 {
      * @return u usuario registrado
      */
 
-    public BibliotecaMariaGajardo_205215034 registrarUsuario(String nombre){
-        UsuarioMariaGajardo_205215034 u = new UsuarioMariaGajardo_205215034(nombre);
+    public Usuario_MariaGajardo_205215034 registrarUsuario(String nombre){
+        Usuario_MariaGajardo_205215034 u = new Usuario_MariaGajardo_205215034(idIncrUsuarios, nombre);
         usuarios.add(u);
         idIncrUsuarios++;
         return u;
@@ -200,8 +200,8 @@ public class BibliotecaMariaGajardo_205215034 {
      * @param idUsuario identificador del usuario
      * @return u usuario buscado o null
      */
-    public UsuarioMariaGajardo_205215034 obtenerUsuario(int idUsuario){
-        for(UsuarioMariaGajardo_205215034 usuario : usuarios){
+    public Usuario_MariaGajardo_205215034 obtenerUsuario(int idUsuario){
+        for(Usuario_MariaGajardo_205215034 usuario : usuarios){
             if(usuario.getIdUsuario() == idUsuario){
                 return usuario;
             }
@@ -215,7 +215,7 @@ public class BibliotecaMariaGajardo_205215034 {
      * @param criterio
      * @return
      */
-    public LibroMariaGajardo_205215034 buscarLibro(BuscarLibro_MariaGajardo_205215034 busqueda, String criterio){
+    public Libro_MariaGajardo_205215034 buscarLibro(BuscarLibro_MariaGajardo_205215034 busqueda, String criterio){
         return busqueda.buscarL(libros, criterio);
     }
 
@@ -225,7 +225,7 @@ public class BibliotecaMariaGajardo_205215034 {
      * @return boolean si esta disponible sino false
      */
 
-    public boolean isLibroDisponible(LibroMariaGajardo_205215034 l){
+    public boolean isLibroDisponible(Libro_MariaGajardo_205215034 l){
         return l.isDisponible();
     }
     /**
@@ -234,7 +234,7 @@ public class BibliotecaMariaGajardo_205215034 {
      * @return boolean si esta suspendido true sino falso
      */
 
-    public boolean isUsuarioSuspendido(UsuarioMariaGajardo_205215034 u){
+    public boolean isUsuarioSuspendido(Usuario_MariaGajardo_205215034 u){
         return !u.isActivo();
     }
 
@@ -251,7 +251,7 @@ public class BibliotecaMariaGajardo_205215034 {
      * @param u usuario
      * @return deuda
      */
-    public int obtenerDeuda(UsuarioMariaGajardo_205215034 u){
+    public int obtenerDeuda(Usuario_MariaGajardo_205215034 u){
         return u.getDeuda();
     }
 
