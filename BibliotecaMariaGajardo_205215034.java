@@ -6,6 +6,8 @@ import static java.util.concurrent.TimeUnit.DAYS;
 
 /**
  * TDA que representa la biblioteca
+ * Clase Biblioteca
+ * @author Maria Belen Gajardo
  */
 public class BibliotecaMariaGajardo_205215034 {
     private int idIncrPrestamos;
@@ -22,14 +24,14 @@ public class BibliotecaMariaGajardo_205215034 {
     private int diasRetrasoMax;
     private LocalDate fechaInicial;
     /**
-     * Constructor biblioteca
+     * Capa constructor de la clase biblioteca
      *
      * @param maxLibrosUsuario es el maximo numero de libros que puede pedir el usuario
      * @param diasMaxPrestamo es el numero maximo de prestamo que puede tener un libro
      * @param tasaMultaDiaria es la multa que recibe el usuario por dias de retraso
      * @param limiteDeudaMax deuda maxima que puede llegar a tener un usuario antes de ser suspendido
      * @param diasRetrasoMax dias de retraso antes de la suspension
-     * @param fechaInicial fecha inicia del sistema
+     * @param fechaInicial fecha inicial del sistema
      */
     public BibliotecaMariaGajardo_205215034(int maxLibrosUsuario, int diasMaxPrestamo, int tasaMultaDiaria, int limiteDeudaMax, int diasRetrasoMax, LocalDate fechaInicial){
         this.libros = new ArrayList<>();
@@ -40,8 +42,7 @@ public class BibliotecaMariaGajardo_205215034 {
         this.tasaMultaDiaria = tasaMultaDiaria;
         this.limiteDeudaMax = limiteDeudaMax;
         this.diasRetrasoMax = diasRetrasoMax;
-        this.fechaInicial = LocalDate.now(); ////////no entiendooo si es fecha real o falsa del sistema
-
+        this.fechaInicial = LocalDate.now();
         this.idIncrUsuarios = 0;
         this.idIncrLibros = 0;
         this.idIncrPrestamos = 0;
@@ -49,7 +50,7 @@ public class BibliotecaMariaGajardo_205215034 {
 
     }
     /**
-     *Devuelve la lista de libros de la biblioteca
+     *Capa selectora, devuelve la lista de libros de la biblioteca
      *
      * @return libros
      */
@@ -57,7 +58,7 @@ public class BibliotecaMariaGajardo_205215034 {
         return libros;
     }
     /**
-     *Devuelve la lista de usuarios de la biblioteca
+     *Capa selectora, devuelve la lista de usuarios de la biblioteca
      *
      * @return usuarios
      */
@@ -65,7 +66,7 @@ public class BibliotecaMariaGajardo_205215034 {
         return usuarios;
     }
     /**
-     *Devuelve la lista de prestamos de la biblioteca
+     *Capa selectora, devuelve la lista de prestamos de la biblioteca
      *
      * @return prestamos
      */
@@ -115,7 +116,7 @@ public class BibliotecaMariaGajardo_205215034 {
     }
 
     /**
-     *Devuelve la fecha inicial del sistema    /FECHA INICIAL
+     *Devuelve la fecha inicial del sistema
      *
      * @return diasRetrasoMax
      */
@@ -124,25 +125,24 @@ public class BibliotecaMariaGajardo_205215034 {
     }
 
     /**
-     *RF03 TDA Usuario - constructor BORRADOR
-     *
-     * @return nuevoUsuario
+     *RF03 TDA Usuario - constructor
+     * @param nombre nombre del usuario/a
+     * @return u usuario creado
      */
     public UsuarioMariaGajardo_205215034 crearUsuario(String nombre){
-        UsuarioMariaGajardo_205215034 u = new UsuarioMariaGajardo_205215034(idIncrUsuarios, nombre);
+        UsuarioMariaGajardo_205215034 u = new UsuarioMariaGajardo_205215034(nombre);
         usuarios.add(u);
         idIncrUsuarios++;
         return u;
     }
     /**
      *RF04 TDA Libro - constructor
-     *
-     * @param autor
-     * @param titulo
-     * @return l
+     * @param autor autor del libro
+     * @param titulo titulo del libro
+     * @return l libro creado
      */
     public LibroMariaGajardo_205215034 crearLibro(String autor, String titulo){
-        LibroMariaGajardo_205215034 l = new LibroMariaGajardo_205215034(idIncrLibros, autor, titulo);
+        LibroMariaGajardo_205215034 l = new LibroMariaGajardo_205215034(autor, titulo);
         libros.add(l);
         idIncrLibros++;
         return l;
@@ -150,11 +150,10 @@ public class BibliotecaMariaGajardo_205215034 {
 
 
     /**
-    *RF05 TDA Prestamo - constructor /////////7
-    *
-     * @param usuario
-     * @param libro
-    * @return nuevoPrestamo
+    *RF05 TDA Prestamo - constructor
+     * @param usuario usuario que pide el libro
+     * @param libro libro a pedir
+    * @return p prestamo nuevo
     */
     public PrestamoMariaGajardo_205215034 crearPrestamo(UsuarioMariaGajardo_205215034 usuario, LibroMariaGajardo_205215034 libro){
         PrestamoMariaGajardo_205215034 p = new PrestamoMariaGajardo_205215034(usuario, libro, fechaInicial, fechaInicial.plusDays(diasMaxPrestamo));
@@ -163,13 +162,11 @@ public class BibliotecaMariaGajardo_205215034 {
         return p;
 }
     /**
-     *RF07 agregarLibro
-     * Agrega un libro a la biblioteca, si el id ya existe no se agrega y entrega null, sino
+     *RF07 agregarLibro: Agrega un libro a la biblioteca, si el id ya existe no se agrega y entrega null, sino
      * se agrega y retorna el libro
-     *
-     * @param titulo
-     * @param autor
-     * @return libro nuevo
+     * @param titulo titulo del libro
+     * @param autor autor del libro
+     * @return libro libro agregado
      */
 
     public LibroMariaGajardo_205215034 agregarLibro(String titulo, String autor){
@@ -178,35 +175,30 @@ public class BibliotecaMariaGajardo_205215034 {
                 return null;
             }
         }
-
-        LibroMariaGajardo_205215034 l = new LibroMariaGajardo_205215034(idIncrLibros, titulo, autor);
+        LibroMariaGajardo_205215034 l = new LibroMariaGajardo_205215034(titulo, autor);
         libros.add(l);
         idIncrLibros++;
         return l;
-
-}
+    }
 
     /**
-     *RF08 registrarUsuario
-     * Registra un usuario en el sistema, inciia con deuda 0 y estado activo(true), si ya existe no se agrega
-     *
+     *RF08 registrarUsuario: Registra un usuario en el sistema, inicia con deuda 0 y estado activo(true), si ya existe no se agrega
      * @param nombre nombre del usuario
-     * @return usuario registrado
+     * @return u usuario registrado
      */
 
     public BibliotecaMariaGajardo_205215034 registrarUsuario(String nombre){
-        UsuarioMariaGajardo_205215034 u = new UsuarioMariaGajardo_205215034(idIncrUsuarios, nombre);
+        UsuarioMariaGajardo_205215034 u = new UsuarioMariaGajardo_205215034(nombre);
         usuarios.add(u);
         idIncrUsuarios++;
         return u;
     }
 
     /**
-     *RF09 obtenerUsuario
-     * Busca usuario por id
+     *RF09 obtenerUsuario : Busca usuario por id
      *
      * @param idUsuario identificador del usuario
-     * @return u  buscado o null
+     * @return u usuario buscado o null
      */
     public UsuarioMariaGajardo_205215034 obtenerUsuario(int idUsuario){
         for(UsuarioMariaGajardo_205215034 usuario : usuarios){
@@ -218,31 +210,28 @@ public class BibliotecaMariaGajardo_205215034 {
     }
 
     /**
-     *RF10 buscarLibro
-     * Busca libro por "id", "titulo" o "autor"
-     *
+     *RF10 buscarLibro: Busca libro por "id", "titulo" o "autor"
+     * @param busqueda
+     * @param criterio
+     * @return
      */
     public LibroMariaGajardo_205215034 buscarLibro(BuscarLibro_MariaGajardo_205215034 busqueda, String criterio){
         return busqueda.buscarL(libros, criterio);
     }
 
     /**
-     *RF11 isLibroDisponible
-     * Verifica si un libro esta disponible (no prestado)
-     *
+     *RF11 isLibroDisponible: Verifica si un libro esta disponible (no prestado)
      * @param l libro a verificar
-     * @return boolean si esta disponible true sino false
+     * @return boolean si esta disponible sino false
      */
 
     public boolean isLibroDisponible(LibroMariaGajardo_205215034 l){
         return l.isDisponible();
     }
     /**
-     *RF12 isUsuarioSuspendido
-     * Verifica el estado del usuario
-     *
+     *RF12 isUsuarioSuspendido: Verifica el estado del usuario
      * @param u usuario a verificar
-     * @return boolean si está activo true sino false
+     * @return boolean si esta suspendido true sino falso
      */
 
     public boolean isUsuarioSuspendido(UsuarioMariaGajardo_205215034 u){
@@ -250,19 +239,16 @@ public class BibliotecaMariaGajardo_205215034 {
     }
 
     /**
-     * RF13 getFecha
-     *
-     *Obtiene fecha actual del sistema desde la biblioteca FECHA ACTUAL
-     * @return fecha actual
+     * RF13 getFecha: Obtiene fecha actual del sistema desde la biblioteca
+     * @param
+     * @return fecha fecha actual del sistema
      */
     public LocalDate getFecha(){
         return LocalDate.now();
     }
     /**
-     *RF14 obtenerDeuda
-     *
-     * Retorna la deuda acumulada por el usuario
-     *
+     *RF14 obtenerDeuda: Retorna la deuda acumulada por el usuario
+     * @param u usuario
      * @return deuda
      */
     public int obtenerDeuda(UsuarioMariaGajardo_205215034 u){
@@ -270,22 +256,23 @@ public class BibliotecaMariaGajardo_205215034 {
     }
 
     /**
-     * RF15 obtenerFechaVencimiento
-     *
-     * Calcula fecha de vencimiento sumando dias solicitados a fecha de prestamo
+     * RF15 obtenerFechaVencimiento: Calcula fecha de vencimiento sumando dias solicitados a fecha de prestamo
+     * @param fecha fecha inicial del prestamo
+     * @param diasSolicitados dias solicitados del prestamo
      */
-    public LocalDate obtenerFechaVencimiento(LocalDate fechaInicial, int diasSolicitados){
-        return fechaInicial.plusDays(diasSolicitados);
+    public LocalDate obtenerFechaVencimiento(LocalDate fecha, int diasSolicitados){
+        return fecha.plusDays(diasSolicitados);
     }
 
     /**
-     * RF16 calcularDiasRetraso
-     *
-     * Calcula dias de retraso entre fecha de vencimiento y fecha actual
+     * RF16 calcularDiasRetraso :Calcula dias de retraso entre fecha de vencimiento y fecha actual
      * Retorna 0 si no hay retraso
+     * @param diasSolicitados dias de prestamo
+     * @param fecha fecha inicial del prestamo
+     * @return diasRetraso dias de retraso calculados
      */
     public int calcularDiasRetraso(int diasSolicitados, LocalDate fecha){
-        LocalDate fechaVencimiento = obtenerFechaVencimiento(fechaInicial, diasSolicitados);
+        LocalDate fechaVencimiento = obtenerFechaVencimiento(fecha, diasSolicitados);
         long diasRetraso = ChronoUnit.DAYS.between(fechaVencimiento, fecha);
         return (diasRetraso > 0) ? (int) diasRetraso : 0;
     }

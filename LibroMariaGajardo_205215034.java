@@ -8,12 +8,10 @@ public class LibroMariaGajardo_205215034 {
     private boolean disponible;
     /**
      * Es el constructor del libro
-     * @param idLibro identificador del libro
      * @param autor es el autor del libro
      * @param titulo es el titulo del libro
      */
-    public LibroMariaGajardo_205215034(int idLibro, String autor, String titulo){
-        this.idLibro = idLibro;//DEBERIA SACARLO CREO
+    public LibroMariaGajardo_205215034(String autor, String titulo){
         this.autor = autor;
         this.titulo = titulo;
         this.disponible = true;

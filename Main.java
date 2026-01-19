@@ -1,13 +1,18 @@
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * Main de la biblioteca, aqui se encuentra el constructor TDA de la biblioteca y
+ * el menu para acceder a los metodos/rfs
+ * @author Maria Belen Gajardo
+ */
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         /**
          *RF06 TDA Biblioteca - constructor
          *
-         * @return
+         * @return biblioteca con parametros iniciales
          */
         BibliotecaMariaGajardo_205215034 b = new BibliotecaMariaGajardo_205215034(2, 14, 100, 1000, 1, LocalDate.now());
 
@@ -32,7 +37,7 @@ public class Main {
                     break;
 
                 case 4:
-                    crearBiblioteca(b);
+                    b = crearBiblioteca();//?????
                     break;
 
                 case 5:
@@ -68,6 +73,14 @@ public class Main {
                     obtenerDeuda(b);
                     break;
 
+                case 13:
+                    obtenerFechaVencimiento(b);
+                    break;
+
+                case 14:
+                    calcularDiasRetraso(b);
+                    break;
+
                 default:
                     System.out.println("Opción invalida.");
             }
@@ -87,7 +100,9 @@ public class Main {
         System.out.println("10. Verificar si un usuario esta suspendido.");
         System.out.println("11. Obtener fecha actual del sistema.");
         System.out.println("12. Obtener deuda de un usuario.");
-        System.out.println("N. Salir");
+        System.out.println("13. Obtener fecha de vencimiento de un prestamo.");
+        System.out.println("14. Calcular dias de retraso en un prestamo.");
+        System.out.println("0. Salir");
 }
 
 
@@ -158,7 +173,7 @@ public class Main {
         String usuario = Main.scanner.nextLine();
         System.out.println("Ingresar el libro:");
         String libro = Main.scanner.nextLine();
-        PrestamoMariaGajardo_205215034 p = b.crearPrestamo(usuario, libro);
+        PrestamoMariaGajardo_205215034 p = b.crearPrestamo(UsuarioMariaGajardo_205215034 usuario, libro);
         if(p != null){
             System.out.println("Usuario creado.");
         } else {
@@ -255,5 +270,47 @@ public class Main {
         int deuda = b.obtenerDeuda(u);
         System.out.println("La deuda del usuario es: $" + deuda);
     }
+
+    public static void obtenerFechaVencimiento(BibliotecaMariaGajardo_205215034 b){
+    System.out.println("Ingresa el id del prestamo:");
+    int id = Main.scanner.nextInt();
+    PrestamoMariaGajardo_205215034 p = null;
+    for(PrestamoMariaGajardo_205215034 prestamo : b.getPrestamos()){
+        if(prestamo.getIdPrestamo() == id){
+            p = prestamo;
+            break;
+        }
+    }
+    if(p == null){
+        System.out.println("Ese prestamo no existe.");
+    } else {
+        LocalDate fechaVencimiento = b.obtenerFechaVencimiento(p.getFecha(), p.getDiasSolicitados());
+        System.out.println("La fecha de vencimiento es: " + fechaVencimiento);
+        }
+    }
+
+    public static void calcularDiasRetraso(BibliotecaMariaGajardo_205215034 b){
+        System.out.println("Ingresa el id del prestamo:");
+        int id = Main.scanner.nextInt();
+        PrestamoMariaGajardo_205215034 p = null;
+        for(PrestamoMariaGajardo_205215034 prestamo : b.getPrestamos()){
+            if(prestamo.getIdPrestamo() == id){
+                p = prestamo;
+                break;
+            }
+        }
+        if(p == null){
+            System.out.println("Ese prestamo no existe.");
+        } else {
+            int diasRetraso = b.calcularDiasRetraso(p.getDiasSolicitados(), LocalDate.now());
+            System.out.println("Tiene " + diasRetraso + " dias de retraso");
+        }
+    }
+    }
+
+
+
+
+
 
     }
